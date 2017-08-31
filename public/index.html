@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Predix Node JS Starter App</title>
+  <link rel="stylesheet" href="stylesheets/style.css"></link>
+  <script src="../scripts/learningpaths.js"></script>+
+  <script src="../scripts/bundle.js"></script>
+  <script
+			  src="https://code.jquery.com/jquery-1.10.2.js"
+			  integrity="sha256-it5nQKHTz+34HijZJQkpNBIHsjpV8b6QzMJs9tmOBSo="
+			  crossorigin="anonymous"></script>
+  
+
+ 
+         <div class= "Header Logo" style=" float:left; margin: 0 auto">
+        <img class="header-logo" src="/images/logo1.png" style="margin-top:-50px; width:350px;height:180px;top center;" ></img>
+    </div>
+
+       
+ 
+
+ </head>
+<div style="position:absolute; right:10px; height: 50px; width: 140px; border: solid blue; ">
+Number of Jobs done in training set: <span id= "count"> </span></div>
+
+<div style="position:absolute; height: 50px; width: 160px; border: solid red; ">
+Number of Warnings occured in training set: <span id= "warning"> </span></div>
+
+  <div style=" height:60vh; margin-left: 100px; width:70vw; color:#2980b9;">
+    <canvas id="myChart"></canvas>
+  </div>
+
+
+  <div class="footer">
+    <div class="footer-logo-container">
+      <img class="footer-logo" src="/images/monogram-wdmk.png"></img>
+    </div>
+  </div>
+</body>
+
+<script>
+function getValuesA()
+{
+$.get("/getAdaValuesCol1",
+         function (data) {
+
+           // var values = [];
+var values =[];
+var time = [];
+var m = [];
+var t = [];
+var w = data.warning;
+var count = data.count;
+
+for(i=data.result.length-1;i>=0;i--)
+{
+values.push(data.result[i].value);
+time.push(data.result[i].time);
+m.push(data.mean);
+t.push(data.threshhold);
+}
+
+document.getElementById("warning").innerHTML= w ;
+document.getElementById("count").innerHTML= count ;
+//console.log("fgfddf",values);
+var ctx = document.getElementById("myChart");
+
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+
+        labels: time,
+        datasets: [{
+
+	    label: 'VOC',
+            data: values,
+            borderWidth: 1,
+            borderColor: "#1561db"
+
+
+        },
+{
+            label: 'Average',
+            data: m,
+	    borderWidth: 0.2,
+	    borderColor: 'Yellow'
+        },
+{
+            label: 'Threshold',
+            data: t,
+            borderWidth: 1,
+	    borderColor: 'Red'
+        }]
+    },
+    options: {
+        scales: {
+
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+
+
+});
+
+
+               }
+      );
+}
+getValuesA();
+
+
+
+</script>
+</html>
