@@ -13,20 +13,68 @@
 
  
          <div class= "Header Logo" style=" float:left; margin: 0 auto">
-        <img class="header-logo" src="/images/logo1.png" style="margin-top:-50px; width:350px;height:180px;top center;" ></img>
+        <img class="header-logo" src="/images/logo1.png" style="margin-top:-50px; width:350px;height:200px;top center;" ></img>
     </div>
 
        
  
+</head>
 
- </head>
-<div style="position:absolute; right:10px; height: 50px; width: 140px; border: solid blue; ">
-Number of Jobs done in training set: <span id= "count"> </span></div>
+<body>
+<style>
+table 
+{
 
-<div style="position:absolute; height: 50px; width: 160px; border: solid red; ">
-Number of Warnings occured in training set: <span id= "warning"> </span></div>
+align-self: center;
 
-  <div style=" height:60vh; margin-left: 100px; width:70vw; color:#2980b9;">
+}
+
+
+{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+<table>
+  <tr>
+    <th><font size="4">Laser Cutting Machine - 1</th>
+    <th></th>
+  </tr>
+  
+  <tr>
+    <td><font size="4"> Number of jobs occured in training set</td>
+    <td><span id= "count"></span> </td>
+  </tr>
+  
+  <tr>
+       <td><font size="4" color="red"> Number of warnings in training set</td>
+      <td><span id= "warning"></span> </td>
+  </tr>
+  
+</table>
+
+<style>
+h2 {
+    text-align: center; font-size: 100%; color: blue 
+}
+
+</style>
+
+<h2> Past Data Time Series Chart </h2>
+
+  <div style=" height:60vh; align-self: center; width:70vw; color:#2980b9;">
     <canvas id="myChart"></canvas>
   </div>
 
